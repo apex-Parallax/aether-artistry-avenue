@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+// Link kept for the logo home link
 import { Menu, X } from "lucide-react";
 
 const links = [
