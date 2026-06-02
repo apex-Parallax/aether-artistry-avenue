@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { to: "/explore", label: "Explore" },
-  { to: "/categories", label: "Categories" },
-  { to: "/how-it-works", label: "How it works" },
-  { to: "/pricing", label: "Pricing" },
+  { href: "#explore", label: "Explore" },
+  { href: "#categories", label: "Categories" },
+  { href: "#how", label: "How it works" },
+  { href: "#join", label: "Pricing" },
 ];
 
 export function SiteNav() {
@@ -45,30 +45,23 @@ export function SiteNav() {
 
           <div className="hidden md:flex items-center gap-8">
             {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
+              <a
+                key={l.href}
+                href={l.href}
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                activeProps={{ className: "text-sm text-foreground" }}
               >
                 {l.label}
-              </Link>
+              </a>
             ))}
           </div>
 
           <div className="hidden md:flex items-center gap-2">
-            <Link
-              to="/signin"
-              className="text-sm text-muted-foreground hover:text-foreground px-4 py-2 transition-colors"
-            >
+            <a href="#join" className="text-sm text-muted-foreground hover:text-foreground px-4 py-2 transition-colors">
               Sign in
-            </Link>
-            <Link
-              to="/join"
-              className="inline-flex items-center gap-1.5 text-sm font-medium rounded-full px-5 py-2.5 bg-foreground text-background hover:bg-foreground/90 transition-all hover:shadow-glow"
-            >
+            </a>
+            <a href="#join" className="inline-flex items-center gap-1.5 text-sm font-medium rounded-full px-5 py-2.5 bg-foreground text-background hover:bg-foreground/90 transition-all hover:shadow-glow">
               Join CreativeHub
-            </Link>
+            </a>
           </div>
 
           <button
@@ -83,18 +76,13 @@ export function SiteNav() {
         {open && (
           <div className="md:hidden mt-2 glass rounded-2xl p-4 flex flex-col gap-1">
             {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                onClick={() => setOpen(false)}
-                className="px-3 py-3 text-sm text-foreground/90 rounded-lg hover:bg-white/5"
-              >
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="px-3 py-3 text-sm text-foreground/90 rounded-lg hover:bg-white/5">
                 {l.label}
-              </Link>
+              </a>
             ))}
             <div className="h-px bg-border my-2" />
-            <Link to="/signin" onClick={() => setOpen(false)} className="px-3 py-3 text-sm rounded-lg hover:bg-white/5">Sign in</Link>
-            <Link to="/join" onClick={() => setOpen(false)} className="px-3 py-3 text-sm rounded-lg bg-foreground text-background text-center mt-1">Join CreativeHub</Link>
+            <a href="#join" onClick={() => setOpen(false)} className="px-3 py-3 text-sm rounded-lg hover:bg-white/5">Sign in</a>
+            <a href="#join" onClick={() => setOpen(false)} className="px-3 py-3 text-sm rounded-lg bg-foreground text-background text-center mt-1">Join CreativeHub</a>
           </div>
         )}
       </div>
