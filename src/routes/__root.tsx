@@ -81,10 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "A premium marketplace for photographers, videographers, designers, and developers. Showcase your portfolio. Get hired by the world's best brands." },
       { name: "author", content: "CreativeHub" },
       { property: "og:title", content: "CreativeHub — Hire World-Class Creative Talent" },
-      { property: "og:description", content: "The marketplace for the world's top creative and technical freelancers." },
+      { property: "og:description", content: "A premium marketplace for photographers, videographers, designers, and developers. Showcase your portfolio. Get hired by the world's best brands." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "CreativeHub — Hire World-Class Creative Talent" },
+      { name: "twitter:description", content: "A premium marketplace for photographers, videographers, designers, and developers. Showcase your portfolio. Get hired by the world's best brands." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c2b26f7c-b385-4b04-941d-aa19bc4afddd/id-preview-b5e95bb4--b94be765-bdb5-4fe0-884b-3ebfe32a9da8.lovable.app-1780377196732.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c2b26f7c-b385-4b04-941d-aa19bc4afddd/id-preview-b5e95bb4--b94be765-bdb5-4fe0-884b-3ebfe32a9da8.lovable.app-1780377196732.png" },
     ],
     links: [
       {
