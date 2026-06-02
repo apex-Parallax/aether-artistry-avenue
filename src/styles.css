@@ -7,6 +7,9 @@
 @theme inline {
   --font-sans: "Inter", "SF Pro Display", system-ui, -apple-system, sans-serif;
   --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --color-primary-glow: var(--primary-glow);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-purple: var(--accent-purple);
 }
 
 /*
