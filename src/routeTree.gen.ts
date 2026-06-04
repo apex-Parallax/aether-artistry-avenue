@@ -18,6 +18,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PortfolioIdRouteImport } from './routes/portfolio.$id'
 import { Route as CategoryNameRouteImport } from './routes/category.$name'
 import { Route as DashboardBuyerIndexRouteImport } from './routes/dashboard.buyer.index'
+import { Route as DashboardBuyerSettingsRouteImport } from './routes/dashboard.buyer.settings'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -64,6 +65,11 @@ const DashboardBuyerIndexRoute = DashboardBuyerIndexRouteImport.update({
   path: '/dashboard/buyer/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardBuyerSettingsRoute = DashboardBuyerSettingsRouteImport.update({
+  id: '/dashboard/buyer/settings',
+  path: '/dashboard/buyer/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
+  '/dashboard/buyer/settings': typeof DashboardBuyerSettingsRoute
   '/dashboard/buyer/': typeof DashboardBuyerIndexRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
+  '/dashboard/buyer/settings': typeof DashboardBuyerSettingsRoute
   '/dashboard/buyer': typeof DashboardBuyerIndexRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/signup': typeof SignupRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
+  '/dashboard/buyer/settings': typeof DashboardBuyerSettingsRoute
   '/dashboard/buyer/': typeof DashboardBuyerIndexRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/category/$name'
     | '/portfolio/$id'
+    | '/dashboard/buyer/settings'
     | '/dashboard/buyer/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/category/$name'
     | '/portfolio/$id'
+    | '/dashboard/buyer/settings'
     | '/dashboard/buyer'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/category/$name'
     | '/portfolio/$id'
+    | '/dashboard/buyer/settings'
     | '/dashboard/buyer/'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   SignupRoute: typeof SignupRoute
   CategoryNameRoute: typeof CategoryNameRoute
   PortfolioIdRoute: typeof PortfolioIdRoute
+  DashboardBuyerSettingsRoute: typeof DashboardBuyerSettingsRoute
   DashboardBuyerIndexRoute: typeof DashboardBuyerIndexRoute
 }
 
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardBuyerIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/buyer/settings': {
+      id: '/dashboard/buyer/settings'
+      path: '/dashboard/buyer/settings'
+      fullPath: '/dashboard/buyer/settings'
+      preLoaderRoute: typeof DashboardBuyerSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   SignupRoute: SignupRoute,
   CategoryNameRoute: CategoryNameRoute,
   PortfolioIdRoute: PortfolioIdRoute,
+  DashboardBuyerSettingsRoute: DashboardBuyerSettingsRoute,
   DashboardBuyerIndexRoute: DashboardBuyerIndexRoute,
 }
 export const routeTree = rootRouteImport
