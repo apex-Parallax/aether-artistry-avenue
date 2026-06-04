@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PortfolioIdRouteImport } from './routes/portfolio.$id'
 import { Route as CategoryNameRouteImport } from './routes/category.$name'
 
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriesRoute = CategoriesRouteImport.update({
   id: '/categories',
   path: '/categories',
@@ -38,12 +44,14 @@ const CategoryNameRoute = CategoryNameRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
+  '/explore': typeof ExploreRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
+  '/explore': typeof ExploreRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
 }
@@ -51,26 +59,46 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
+  '/explore': typeof ExploreRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/categories' | '/category/$name' | '/portfolio/$id'
+  fullPaths:
+    | '/'
+    | '/categories'
+    | '/explore'
+    | '/category/$name'
+    | '/portfolio/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/categories' | '/category/$name' | '/portfolio/$id'
-  id: '__root__' | '/' | '/categories' | '/category/$name' | '/portfolio/$id'
+  to: '/' | '/categories' | '/explore' | '/category/$name' | '/portfolio/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/categories'
+    | '/explore'
+    | '/category/$name'
+    | '/portfolio/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CategoriesRoute: typeof CategoriesRoute
+  ExploreRoute: typeof ExploreRoute
   CategoryNameRoute: typeof CategoryNameRoute
   PortfolioIdRoute: typeof PortfolioIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categories': {
       id: '/categories'
       path: '/categories'
@@ -105,9 +133,20 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CategoriesRoute: CategoriesRoute,
+  ExploreRoute: ExploreRoute,
   CategoryNameRoute: CategoryNameRoute,
   PortfolioIdRoute: PortfolioIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
