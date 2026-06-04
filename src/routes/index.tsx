@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Camera, Video, Wand2, Palette, Layout, Code2, Sparkles, Play, Star, Music, Megaphone, PenTool } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Camera, Video, Wand2, Palette, Layout, Code2, Sparkles, Play, Star, Music, Megaphone, PenTool, Check } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import heroBg from "@/assets/hero-bg.jpg";
 import creator1 from "@/assets/creator-1.jpg";
