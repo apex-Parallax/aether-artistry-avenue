@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Camera, Film, Video, Wand2, Palette, Layout, Code2, Smartphone, Box, Sparkles, Play, Star, Check } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, ArrowUpRight, Camera, Video, Wand2, Palette, Layout, Code2, Sparkles, Play, Star, Music, Megaphone, PenTool } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import heroBg from "@/assets/hero-bg.jpg";
 import creator1 from "@/assets/creator-1.jpg";
@@ -23,16 +23,14 @@ export const Route = createFileRoute("/")({
 });
 
 const categories = [
-  { icon: Camera, label: "Photographers", count: "12.4k" },
-  { icon: Video, label: "Videographers", count: "8.1k" },
-  { icon: Film, label: "Cinematographers", count: "3.2k" },
-  { icon: Wand2, label: "Video Editors", count: "9.7k" },
-  { icon: Sparkles, label: "Motion Designers", count: "5.6k" },
-  { icon: Palette, label: "Graphic Designers", count: "18.2k" },
-  { icon: Layout, label: "UI / UX Designers", count: "11.9k" },
-  { icon: Code2, label: "Web Developers", count: "21.5k" },
-  { icon: Smartphone, label: "App Developers", count: "7.3k" },
-  { icon: Box, label: "3D Artists", count: "4.4k" },
+  { icon: Code2, label: "Web Development", count: "21.5k" },
+  { icon: Palette, label: "Graphic Design", count: "18.2k" },
+  { icon: Camera, label: "Photography", count: "12.4k" },
+  { icon: Wand2, label: "Video Editing", count: "9.7k" },
+  { icon: Layout, label: "UI/UX Design", count: "11.9k" },
+  { icon: PenTool, label: "Content Writing", count: "6.8k" },
+  { icon: Music, label: "Music Production", count: "3.9k" },
+  { icon: Megaphone, label: "Digital Marketing", count: "8.5k" },
 ];
 
 const creators = [
@@ -185,11 +183,12 @@ function Categories() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-border rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden">
           {categories.map((c) => (
-            <a
+            <Link
               key={c.label}
-              href="#"
+              to="/category/$name"
+              params={{ name: c.label }}
               className="group relative bg-background p-6 sm:p-8 transition-colors hover:bg-card flex flex-col gap-6 min-h-[180px]"
             >
               <div className="flex items-center justify-between">
@@ -200,8 +199,16 @@ function Categories() {
                 <div className="font-display text-lg font-medium tracking-tight">{c.label}</div>
                 <div className="text-xs text-muted-foreground mt-1">{c.count} pros</div>
               </div>
-            </a>
+            </Link>
           ))}
+        </div>
+        <div className="mt-10 flex justify-center">
+          <Link
+            to="/categories"
+            className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/5 transition-colors"
+          >
+            Browse all categories <ArrowUpRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>
