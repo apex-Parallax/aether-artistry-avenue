@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ExploreRouteImport } from './routes/explore'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PortfolioIdRouteImport } from './routes/portfolio.$id'
 import { Route as CategoryNameRouteImport } from './routes/category.$name'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/explore': typeof ExploreRoute
   '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/explore': typeof ExploreRoute
   '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/explore': typeof ExploreRoute
   '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/login'
     | '/pricing'
+    | '/signup'
     | '/category/$name'
     | '/portfolio/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/login'
     | '/pricing'
+    | '/signup'
     | '/category/$name'
     | '/portfolio/$id'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/login'
     | '/pricing'
+    | '/signup'
     | '/category/$name'
     | '/portfolio/$id'
   fileRoutesById: FileRoutesById
@@ -117,12 +129,20 @@ export interface RootRouteChildren {
   ExploreRoute: typeof ExploreRoute
   LoginRoute: typeof LoginRoute
   PricingRoute: typeof PricingRoute
+  SignupRoute: typeof SignupRoute
   CategoryNameRoute: typeof CategoryNameRoute
   PortfolioIdRoute: typeof PortfolioIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExploreRoute: ExploreRoute,
   LoginRoute: LoginRoute,
   PricingRoute: PricingRoute,
+  SignupRoute: SignupRoute,
   CategoryNameRoute: CategoryNameRoute,
   PortfolioIdRoute: PortfolioIdRoute,
 }
