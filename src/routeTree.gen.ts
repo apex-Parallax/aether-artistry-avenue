@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as IndexRouteImport } from './routes/index'
@@ -19,6 +20,11 @@ import { Route as CategoryNameRouteImport } from './routes/category.$name'
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExploreRoute = ExploreRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
   '/explore': typeof ExploreRoute
+  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
   '/explore': typeof ExploreRoute
+  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
   '/explore': typeof ExploreRoute
+  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/categories'
     | '/explore'
+    | '/login'
     | '/pricing'
     | '/category/$name'
     | '/portfolio/$id'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/categories'
     | '/explore'
+    | '/login'
     | '/pricing'
     | '/category/$name'
     | '/portfolio/$id'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/categories'
     | '/explore'
+    | '/login'
     | '/pricing'
     | '/category/$name'
     | '/portfolio/$id'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CategoriesRoute: typeof CategoriesRoute
   ExploreRoute: typeof ExploreRoute
+  LoginRoute: typeof LoginRoute
   PricingRoute: typeof PricingRoute
   CategoryNameRoute: typeof CategoryNameRoute
   PortfolioIdRoute: typeof PortfolioIdRoute
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/explore': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CategoriesRoute: CategoriesRoute,
   ExploreRoute: ExploreRoute,
+  LoginRoute: LoginRoute,
   PricingRoute: PricingRoute,
   CategoryNameRoute: CategoryNameRoute,
   PortfolioIdRoute: PortfolioIdRoute,
