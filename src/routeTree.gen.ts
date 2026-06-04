@@ -19,6 +19,7 @@ import { Route as PortfolioIdRouteImport } from './routes/portfolio.$id'
 import { Route as CategoryNameRouteImport } from './routes/category.$name'
 import { Route as DashboardSellerIndexRouteImport } from './routes/dashboard.seller.index'
 import { Route as DashboardBuyerIndexRouteImport } from './routes/dashboard.buyer.index'
+import { Route as DashboardSellerSettingsRouteImport } from './routes/dashboard.seller.settings'
 import { Route as DashboardBuyerSettingsRouteImport } from './routes/dashboard.buyer.settings'
 
 const SignupRoute = SignupRouteImport.update({
@@ -71,6 +72,11 @@ const DashboardBuyerIndexRoute = DashboardBuyerIndexRouteImport.update({
   path: '/dashboard/buyer/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardSellerSettingsRoute = DashboardSellerSettingsRouteImport.update({
+  id: '/dashboard/seller/settings',
+  path: '/dashboard/seller/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardBuyerSettingsRoute = DashboardBuyerSettingsRouteImport.update({
   id: '/dashboard/buyer/settings',
   path: '/dashboard/buyer/settings',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
   '/dashboard/buyer/settings': typeof DashboardBuyerSettingsRoute
+  '/dashboard/seller/settings': typeof DashboardSellerSettingsRoute
   '/dashboard/buyer/': typeof DashboardBuyerIndexRoute
   '/dashboard/seller/': typeof DashboardSellerIndexRoute
 }
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
   '/dashboard/buyer/settings': typeof DashboardBuyerSettingsRoute
+  '/dashboard/seller/settings': typeof DashboardSellerSettingsRoute
   '/dashboard/buyer': typeof DashboardBuyerIndexRoute
   '/dashboard/seller': typeof DashboardSellerIndexRoute
 }
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
   '/dashboard/buyer/settings': typeof DashboardBuyerSettingsRoute
+  '/dashboard/seller/settings': typeof DashboardSellerSettingsRoute
   '/dashboard/buyer/': typeof DashboardBuyerIndexRoute
   '/dashboard/seller/': typeof DashboardSellerIndexRoute
 }
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/category/$name'
     | '/portfolio/$id'
     | '/dashboard/buyer/settings'
+    | '/dashboard/seller/settings'
     | '/dashboard/buyer/'
     | '/dashboard/seller/'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/category/$name'
     | '/portfolio/$id'
     | '/dashboard/buyer/settings'
+    | '/dashboard/seller/settings'
     | '/dashboard/buyer'
     | '/dashboard/seller'
   id:
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/category/$name'
     | '/portfolio/$id'
     | '/dashboard/buyer/settings'
+    | '/dashboard/seller/settings'
     | '/dashboard/buyer/'
     | '/dashboard/seller/'
   fileRoutesById: FileRoutesById
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   CategoryNameRoute: typeof CategoryNameRoute
   PortfolioIdRoute: typeof PortfolioIdRoute
   DashboardBuyerSettingsRoute: typeof DashboardBuyerSettingsRoute
+  DashboardSellerSettingsRoute: typeof DashboardSellerSettingsRoute
   DashboardBuyerIndexRoute: typeof DashboardBuyerIndexRoute
   DashboardSellerIndexRoute: typeof DashboardSellerIndexRoute
 }
@@ -245,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardBuyerIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/seller/settings': {
+      id: '/dashboard/seller/settings'
+      path: '/dashboard/seller/settings'
+      fullPath: '/dashboard/seller/settings'
+      preLoaderRoute: typeof DashboardSellerSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/buyer/settings': {
       id: '/dashboard/buyer/settings'
       path: '/dashboard/buyer/settings'
@@ -265,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   CategoryNameRoute: CategoryNameRoute,
   PortfolioIdRoute: PortfolioIdRoute,
   DashboardBuyerSettingsRoute: DashboardBuyerSettingsRoute,
+  DashboardSellerSettingsRoute: DashboardSellerSettingsRoute,
   DashboardBuyerIndexRoute: DashboardBuyerIndexRoute,
   DashboardSellerIndexRoute: DashboardSellerIndexRoute,
 }
