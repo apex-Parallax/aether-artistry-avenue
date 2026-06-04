@@ -1,14 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-// Link kept for the logo home link
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { href: "#explore", label: "Explore" },
-  { href: "#categories", label: "Categories" },
-  { href: "#how", label: "How it works" },
-  { href: "#join", label: "Pricing" },
-];
+  { to: "/explore", label: "Explore" },
+  { to: "/categories", label: "Categories" },
+  { to: "/pricing", label: "Pricing" },
+  { to: "/dashboard/buyer", label: "Dashboard" },
+] as const;
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -46,23 +45,24 @@ export function SiteNav() {
 
           <div className="hidden md:flex items-center gap-8">
             {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
+              <Link
+                key={l.to}
+                to={l.to}
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                activeProps={{ className: "text-foreground" }}
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
           </div>
 
           <div className="hidden md:flex items-center gap-2">
-            <a href="#join" className="text-sm text-muted-foreground hover:text-foreground px-4 py-2 transition-colors">
+            <Link to="/login" className="text-sm text-muted-foreground hover:text-foreground px-4 py-2 transition-colors">
               Sign in
-            </a>
-            <a href="#join" className="inline-flex items-center gap-1.5 text-sm font-medium rounded-full px-5 py-2.5 bg-foreground text-background hover:bg-foreground/90 transition-all hover:shadow-glow">
+            </Link>
+            <Link to="/signup" className="inline-flex items-center gap-1.5 text-sm font-medium rounded-full px-5 py-2.5 bg-foreground text-background hover:bg-foreground/90 transition-all hover:shadow-glow">
               Join CreativeHub
-            </a>
+            </Link>
           </div>
 
           <button
@@ -77,13 +77,18 @@ export function SiteNav() {
         {open && (
           <div className="md:hidden mt-2 glass rounded-2xl p-4 flex flex-col gap-1">
             {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="px-3 py-3 text-sm text-foreground/90 rounded-lg hover:bg-white/5">
+              <Link
+                key={l.to}
+                to={l.to}
+                onClick={() => setOpen(false)}
+                className="px-3 py-3 text-sm text-foreground/90 rounded-lg hover:bg-white/5"
+              >
                 {l.label}
-              </a>
+              </Link>
             ))}
             <div className="h-px bg-border my-2" />
-            <a href="#join" onClick={() => setOpen(false)} className="px-3 py-3 text-sm rounded-lg hover:bg-white/5">Sign in</a>
-            <a href="#join" onClick={() => setOpen(false)} className="px-3 py-3 text-sm rounded-lg bg-foreground text-background text-center mt-1">Join CreativeHub</a>
+            <Link to="/login" onClick={() => setOpen(false)} className="px-3 py-3 text-sm rounded-lg hover:bg-white/5">Sign in</Link>
+            <Link to="/signup" onClick={() => setOpen(false)} className="px-3 py-3 text-sm rounded-lg bg-foreground text-background text-center mt-1">Join CreativeHub</Link>
           </div>
         )}
       </div>

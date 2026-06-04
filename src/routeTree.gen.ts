@@ -9,11 +9,39 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PortfolioIdRouteImport } from './routes/portfolio.$id'
 import { Route as CategoryNameRouteImport } from './routes/category.$name'
+import { Route as DashboardSellerIndexRouteImport } from './routes/dashboard.seller.index'
+import { Route as DashboardBuyerIndexRouteImport } from './routes/dashboard.buyer.index'
+import { Route as DashboardSellerSettingsRouteImport } from './routes/dashboard.seller.settings'
+import { Route as DashboardBuyerSettingsRouteImport } from './routes/dashboard.buyer.settings'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriesRoute = CategoriesRouteImport.update({
   id: '/categories',
   path: '/categories',
@@ -34,43 +62,160 @@ const CategoryNameRoute = CategoryNameRouteImport.update({
   path: '/category/$name',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardSellerIndexRoute = DashboardSellerIndexRouteImport.update({
+  id: '/dashboard/seller/',
+  path: '/dashboard/seller/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardBuyerIndexRoute = DashboardBuyerIndexRouteImport.update({
+  id: '/dashboard/buyer/',
+  path: '/dashboard/buyer/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardSellerSettingsRoute = DashboardSellerSettingsRouteImport.update({
+  id: '/dashboard/seller/settings',
+  path: '/dashboard/seller/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardBuyerSettingsRoute = DashboardBuyerSettingsRouteImport.update({
+  id: '/dashboard/buyer/settings',
+  path: '/dashboard/buyer/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
+  '/explore': typeof ExploreRoute
+  '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
+  '/dashboard/buyer/settings': typeof DashboardBuyerSettingsRoute
+  '/dashboard/seller/settings': typeof DashboardSellerSettingsRoute
+  '/dashboard/buyer/': typeof DashboardBuyerIndexRoute
+  '/dashboard/seller/': typeof DashboardSellerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
+  '/explore': typeof ExploreRoute
+  '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
+  '/dashboard/buyer/settings': typeof DashboardBuyerSettingsRoute
+  '/dashboard/seller/settings': typeof DashboardSellerSettingsRoute
+  '/dashboard/buyer': typeof DashboardBuyerIndexRoute
+  '/dashboard/seller': typeof DashboardSellerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
+  '/explore': typeof ExploreRoute
+  '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
   '/category/$name': typeof CategoryNameRoute
   '/portfolio/$id': typeof PortfolioIdRoute
+  '/dashboard/buyer/settings': typeof DashboardBuyerSettingsRoute
+  '/dashboard/seller/settings': typeof DashboardSellerSettingsRoute
+  '/dashboard/buyer/': typeof DashboardBuyerIndexRoute
+  '/dashboard/seller/': typeof DashboardSellerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/categories' | '/category/$name' | '/portfolio/$id'
+  fullPaths:
+    | '/'
+    | '/categories'
+    | '/explore'
+    | '/login'
+    | '/pricing'
+    | '/signup'
+    | '/category/$name'
+    | '/portfolio/$id'
+    | '/dashboard/buyer/settings'
+    | '/dashboard/seller/settings'
+    | '/dashboard/buyer/'
+    | '/dashboard/seller/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/categories' | '/category/$name' | '/portfolio/$id'
-  id: '__root__' | '/' | '/categories' | '/category/$name' | '/portfolio/$id'
+  to:
+    | '/'
+    | '/categories'
+    | '/explore'
+    | '/login'
+    | '/pricing'
+    | '/signup'
+    | '/category/$name'
+    | '/portfolio/$id'
+    | '/dashboard/buyer/settings'
+    | '/dashboard/seller/settings'
+    | '/dashboard/buyer'
+    | '/dashboard/seller'
+  id:
+    | '__root__'
+    | '/'
+    | '/categories'
+    | '/explore'
+    | '/login'
+    | '/pricing'
+    | '/signup'
+    | '/category/$name'
+    | '/portfolio/$id'
+    | '/dashboard/buyer/settings'
+    | '/dashboard/seller/settings'
+    | '/dashboard/buyer/'
+    | '/dashboard/seller/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CategoriesRoute: typeof CategoriesRoute
+  ExploreRoute: typeof ExploreRoute
+  LoginRoute: typeof LoginRoute
+  PricingRoute: typeof PricingRoute
+  SignupRoute: typeof SignupRoute
   CategoryNameRoute: typeof CategoryNameRoute
   PortfolioIdRoute: typeof PortfolioIdRoute
+  DashboardBuyerSettingsRoute: typeof DashboardBuyerSettingsRoute
+  DashboardSellerSettingsRoute: typeof DashboardSellerSettingsRoute
+  DashboardBuyerIndexRoute: typeof DashboardBuyerIndexRoute
+  DashboardSellerIndexRoute: typeof DashboardSellerIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categories': {
       id: '/categories'
       path: '/categories'
@@ -99,14 +244,50 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoryNameRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/seller/': {
+      id: '/dashboard/seller/'
+      path: '/dashboard/seller'
+      fullPath: '/dashboard/seller/'
+      preLoaderRoute: typeof DashboardSellerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/buyer/': {
+      id: '/dashboard/buyer/'
+      path: '/dashboard/buyer'
+      fullPath: '/dashboard/buyer/'
+      preLoaderRoute: typeof DashboardBuyerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/seller/settings': {
+      id: '/dashboard/seller/settings'
+      path: '/dashboard/seller/settings'
+      fullPath: '/dashboard/seller/settings'
+      preLoaderRoute: typeof DashboardSellerSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/buyer/settings': {
+      id: '/dashboard/buyer/settings'
+      path: '/dashboard/buyer/settings'
+      fullPath: '/dashboard/buyer/settings'
+      preLoaderRoute: typeof DashboardBuyerSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CategoriesRoute: CategoriesRoute,
+  ExploreRoute: ExploreRoute,
+  LoginRoute: LoginRoute,
+  PricingRoute: PricingRoute,
+  SignupRoute: SignupRoute,
   CategoryNameRoute: CategoryNameRoute,
   PortfolioIdRoute: PortfolioIdRoute,
+  DashboardBuyerSettingsRoute: DashboardBuyerSettingsRoute,
+  DashboardSellerSettingsRoute: DashboardSellerSettingsRoute,
+  DashboardBuyerIndexRoute: DashboardBuyerIndexRoute,
+  DashboardSellerIndexRoute: DashboardSellerIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
